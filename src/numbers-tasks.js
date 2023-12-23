@@ -49,12 +49,8 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  // if (value1 > value2) {
-  //   return (value1 + value2) / 2;
-  // }
-  // return (value2 + value1) / 2;
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -110,14 +106,12 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  // const p1 = { x: x1, y: y1 };
-  // const p2 = { x: x2, y: y2 };
-  throw new Error('Not implemented');
-  // return Math.atan2(p2.y - p1.y, p2.x - p1.x);
-  // return (Math.atan2(y, x) * 180) / Math.PI;
-  // return (Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180) / Math.PI;
-  // return Math.atan2(p2.y - p1.y, p2.x - p1.x);
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const firsty = x1 * x2 + y1 * y2;
+  const virel = Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2);
+
+  const radians = Math.acos(firsty / virel);
+  return radians;
 }
 
 /**
@@ -357,8 +351,9 @@ function getSine(num) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  if (number < 0) return -Math.abs(number).toString(base);
+  return Math.abs(number).toString(base);
 }
 
 /**
@@ -371,8 +366,8 @@ function numberToStringInBase(/* number, base */) {
  * @example:
  * 12345, 2    => '1.23e+4'
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return Number.parseFloat(number).toExponential(fractionDigits);
 }
 
 /**
@@ -386,8 +381,8 @@ function toExponential(/* number, fractionDigits */) {
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return Number.parseFloat(number).toFixed(fractionDigits);
 }
 
 /**
@@ -402,8 +397,8 @@ function toFixed(/* number, fractionDigits */) {
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
@@ -416,8 +411,8 @@ function toPrecision(/* number, precision */) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return Number(number).valueOf();
 }
 
 /**
@@ -435,8 +430,11 @@ function getNumberValue(/* number */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  if (Number.isFinite(number)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -467,8 +465,8 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
 }
 
 /**
